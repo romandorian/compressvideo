@@ -15,7 +15,7 @@ function normalizeSiteUrl(value: string) {
 }
 
 export const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://compressvideo.dev");
-export const contactEmail = (process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@compressvideo.dev").toLowerCase();
+export const contactEmail = (process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "support@compressvideo.dev").toLowerCase();
 
 export function localePath(locale: Locale, path: string) {
   if (locale === "en") return path;

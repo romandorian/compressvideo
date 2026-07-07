@@ -42,7 +42,7 @@ Set these environment variables in production:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://compressvideo.dev
-NEXT_PUBLIC_CONTACT_EMAIL=hello@compressvideo.dev
+NEXT_PUBLIC_CONTACT_EMAIL=support@compressvideo.dev
 ```
 
 `NEXT_PUBLIC_SITE_URL` is used for sitemap, robots, canonical URLs, and the web app manifest.
