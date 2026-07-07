@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { locales, localePath, siteUrl } from "@/lib/i18n";
 import { toolPages } from "@/lib/tool-pages";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",

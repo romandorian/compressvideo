@@ -110,7 +110,9 @@ export function VideoCompressor({
 
     setStatusKey("loading");
     const ffmpeg = new FFmpeg();
-    const baseURL = "/ffmpeg";
+    // Single-threaded core loaded from CDN (Cloudflare Pages has a 25 MiB
+    // per-file limit, so the ~31 MB wasm cannot be self-hosted there).
+    const baseURL = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
 
     ffmpeg.on("progress", ({ progress: nextProgress }) => {
       setProgress(Math.max(4, Math.min(99, Math.round(nextProgress * 100))));
