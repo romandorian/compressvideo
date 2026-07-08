@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { VideoCompressor } from "@/components/video-compressor";
 import { localizedContent } from "@/lib/content";
-import { localePath, ui, type Locale } from "@/lib/i18n";
+import { localePath, siteUrl, ui, type Locale } from "@/lib/i18n";
 import { getRelatedPages, type ToolPage } from "@/lib/tool-pages";
 
 export function ToolPageView({ page, locale }: { page: ToolPage; locale: Locale }) {
@@ -22,9 +22,21 @@ export function ToolPageView({ page, locale }: { page: ToolPage; locale: Locale 
     })),
   };
 
+  const homePath = localePath(locale, "/");
+  const homeUrl = `${siteUrl}${homePath === "/" ? "" : homePath}`;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "CompressVideo", item: homeUrl },
+      { "@type": "ListItem", position: 2, name: content.h1, item: `${siteUrl}${localePath(locale, `/${page.slug}`)}` },
+    ],
+  };
+
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <section className="bg-slate-50">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_480px] lg:items-center lg:py-14">

@@ -22,6 +22,17 @@ export function localePath(locale: Locale, path: string) {
   return path === "/" ? `/${locale}` : `/${locale}${path}`;
 }
 
+export function openGraphFor(locale: Locale, title: string, description: string, path: string) {
+  return {
+    title,
+    description,
+    url: localePath(locale, path),
+    siteName: "CompressVideo",
+    locale,
+    type: "website" as const,
+  };
+}
+
 export function alternatesFor(locale: Locale, path: string) {
   return {
     canonical: localePath(locale, path),

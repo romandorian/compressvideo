@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { VideoCompressor } from "@/components/video-compressor";
 import { localizedContent } from "@/lib/content";
-import { localePath, ui, type Locale } from "@/lib/i18n";
+import { localePath, siteUrl, ui, type Locale } from "@/lib/i18n";
 import { pagesByCategory, type ToolPage } from "@/lib/tool-pages";
 
 function ToolLinkGroup({
@@ -52,12 +52,21 @@ export function HomeView({ locale }: { locale: Locale }) {
     })),
   };
 
+  const homePath = localePath(locale, "/");
+  const homeUrl = `${siteUrl}${homePath === "/" ? "" : homePath}`;
+
   const appJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "CompressVideo",
+    url: homeUrl,
+    description: home.metaDescription,
     applicationCategory: "MultimediaApplication",
     operatingSystem: "Any browser",
+    browserRequirements: "Requires JavaScript and WebAssembly",
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    featureList: home.badges,
     offers: {
       "@type": "Offer",
       price: "0",
